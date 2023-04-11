@@ -1,3 +1,4 @@
+
 name: run mgdp in pipeline test
 
 on:
@@ -10,4 +11,10 @@ jobs:
     steps:
     - name: Perform a Pester test from the Tests.ps1 file
       shell: pwsh
-      run: Write-Output "test"
+      run: |
+        $url = "https://github.com/microsoftgraph/msgraph-developer-proxy/releases/download/v0.6.0/msgraph-developer-proxy-win-x64-v0.6.0.zip"
+        $dest = ".\mgdp"
+        Invoke-WebRequest -Uri $url -OutFile "$dest.zip"
+        Expand-Archive "$dest.zip" -DestinationPath $dest
+        dir
+
