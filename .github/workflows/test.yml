@@ -16,7 +16,7 @@ jobs:
         $dest = ".\mgdp"
         Invoke-WebRequest -Uri $url -OutFile "$dest.zip"
         Expand-Archive "$dest.zip" -DestinationPath $dest
+        cd mgdp
         dir
-        cd $dest
         mgdp.exe
 
